@@ -1,0 +1,22 @@
+#!/bin/bash
+cd ${0%/*} || exit 1    # run from this directory
+
+# Check if OpenFOAM/FOAM has been sourced
+if [[ -z "${WM_PROJECT}" ]]
+then
+    echo "Please source the OpenFOAM/FOAM bashrc first!"
+    exit 1
+fi
+
+# Check if the solids4foam installation directory has been set
+if [[ -z "${SOLIDS4FOAM_DIR}" ]]
+then
+    echo "Please set SOLIDS4FOAM_DIR, e.g."
+    echo "    export SOLIDS4FOAM_DIR=/Users/philipc/foam/philipc-4.1/solids4foam"
+    exit 1
+fi
+
+# Compile libraries
+(cd src && ./Allwmake)
+
+echo; echo "All done"; echo

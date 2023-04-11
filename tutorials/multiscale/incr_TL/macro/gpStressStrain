@@ -1,0 +1,37 @@
+set terminal pngcairo size 800,600 enhanced font 'Verdana,16'
+set output "two-scale-traction-displacement.png"
+set border lw 2
+
+#set terminal postscript enhanced color solid
+#set output "two-scale-traction-displacement_UL.eps"
+
+set xlabel "Prescribed top edge displacement, mm"
+set ylabel "Average top edge traction, MPa"
+#set y2label "Strain [-]"
+
+
+set key top left
+
+#set y2tics
+#set ytics nomirror
+set title "Incremental total Lagrangian formulation"
+#set size 0.6,0.6
+#set grid
+
+#set yrange [0:200]
+
+set key bottom right
+
+plot "< join ../../../../plateHoleSinglescale/incr/plateHole/history/0/solidDisplacementstop.dat ../../../../plateHoleSinglescale/incr/plateHole/history/0/avgTraction_top.dat" using 3:($12/1000) title "Single-scale" with linespoints lw 2 pt 6, \
+"< join history/0/solidDisplacementstop.dat history/0/avgTraction_top.dat" using 3:($12/1000) title "Multi-scale" with linespoints lw 2 pt 6
+
+
+
+#plot "./history/0/history.dat" using 2:3 axis x1y1 title "Applied traction" with lines, \
+#"./history/0/history.dat" using 2:6 axis x1y1 title "Max equivalent stress" with lines, \
+#"./history/0/history.dat" using 2:7 axis x1y1 title "Max SigmaZZ" with lines, \
+#"./history/0/history.dat" using 2:9 axis x1y2 title "Max equivalent strain" with lines, \
+#"./history/0/history.dat" using 2:4 axis x1y2 title "Avg circumferential strain" with lines
+
+#set output
+#set terminal x11

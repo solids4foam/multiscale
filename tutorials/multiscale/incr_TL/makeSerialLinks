@@ -1,0 +1,28 @@
+#!/bin/tcsh
+#
+# usage:
+#     > ./makeSerialLinks macro rve
+#
+
+cd $1
+
+cd constant
+
+ln -s ../../$2/constant/plasticStrainVsYieldStress
+foreach i ( `seq 0 210` )
+ln -s ../../$2/constant rve-$i
+end
+
+cd ../system
+
+foreach i ( `seq 0 210` )
+ln -s ../../$2/system rve-$i
+end
+
+cd ../0
+
+foreach i ( `seq 0 210` )
+ln -s ../../$2/0 rve-$i
+end
+
+cd ../../

@@ -1,0 +1,15 @@
+#!/bin/tcsh
+# usage:
+#     > ./removeSerialLinks macro
+#
+
+cd $1
+
+rm -rf 0/rve-*
+
+rm -rf constant/plasticStrainVsYieldStress
+rm -rf constant/rve-*
+
+rm -rf system/rve-*
+
+cd ..
